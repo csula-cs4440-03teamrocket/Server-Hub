@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Whiteboard</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+    <style>
+        body {
+            background: gray;
+            font-family: sans-serif;
+        }
+        #app {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        #sidebar {
+            background: white;
+            width: 90px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+        #palette {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .colorChosen {
+            border-color: black;
+            width: 25px;
+            height: 25px;
+            border: 2px solid gray;
+            cursor: pointer;
+        }
+        .colorChosen.active {
+            border-color: gray;
+            outline: 2px solid cyan;
+        }
+        #board {
+            background: white;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="sidebar">
+            <div id="palette"></div>
+            <input type="range" id="size" min="1" max="100" value="5">
+            <label>Width <span id="size-label">5</span></label>
+            <button id="eraser">Eraser</button>
+            <button id="clear">Clear</button>
+            <button id="insert-image">Add Image</button>
+            <input type="file" id="file" accept="image/*" style="display:none">
+        </div>
+        <canvas id="board" width="930" height="500"></canvas>
+    </div>
+
+    <script type="py" src="{% static 'whiteboard/whiteboard.py' %}"></script>
+</body>
+</html>
